@@ -1,35 +1,47 @@
 import { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { getIsLoading, getError } from 'redux/selectors';
-import { fetchContacts } from 'redux/operations';
-import { Container } from './Container/Container.styled';
-import { Section } from './Section/Section';
-import { ContactForm } from './ContactForm/ContactForm';
-import { ContactList } from './ContactList/ContactList';
-import { Filter } from './Filter/Filter';
-import { Notification } from './Notification/Notification';
+import { Routes, Route } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { useAuth } from 'hooks';
+import { Layout } from './Layout';
+import { Home } from 'pages/Home';
+import { Contacts } from 'pages/Contacts';
+import { Registration } from 'pages/Registration';
+import { Login } from 'pages/Login';
+import { refreshUser } from 'redux/auth/operations';
 import { Loader } from './Loader/Loader';
+import { RestrictedRoute } from './RestrictedRoute';
+import { PrivateRoute } from './PrivateRoute';
 
 export const App = () => {
   const dispatch = useDispatch();
-  const isLoading = useSelector(getIsLoading);
-  const error = useSelector(getError);
+  const { isRefreshing } = useAuth();
 
   useEffect(() => {
-    dispatch(fetchContacts());
+    dispatch(refreshUser());
   }, [dispatch]);
 
-  return (
-    <Container>
-      <Section title="phonebook">
-        <ContactForm />
-      </Section>
-      <Section title="contacts">
-        <Filter />
-        {!error && !isLoading && <ContactList />}
-        {isLoading && <Loader />}
-        {error && <Notification message={error} />}
-      </Section>
-    </Container>
+  return isRefreshing ? (
+    <Loader />
+  ) : (
+    <Routes>
+      <Route path="/" element={<Layout />}>
+        <Route index element={<Home />} />
+        {/* <Route path="/contacts" element={<Contacts />} /> */}
+        <Route
+          path="/contacts"
+          element={<PrivateRoute element={Contacts} redirectTo="/login" />}
+        />
+        {/* <Route path="/registration" element={<Registration />} /> */}
+        <Route
+          path="/registration"
+          element={<RestrictedRoute element={Registration} redirectTo="/" />}
+        />
+        {/* <Route path="/login" element={<Login />} /> */}
+        <Route
+          path="/login"
+          element={<RestrictedRoute element={Login} redirectTo="/" />}
+        />
+      </Route>
+    </Routes>
   );
 };
