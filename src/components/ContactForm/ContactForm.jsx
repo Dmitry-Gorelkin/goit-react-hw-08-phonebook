@@ -58,7 +58,7 @@ export const ContactForm = () => {
       </Label>
 
       <Label>
-        Nunber
+        Number
         <Input
           type="tel"
           name="number"
