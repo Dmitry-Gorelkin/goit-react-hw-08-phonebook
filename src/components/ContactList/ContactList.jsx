@@ -1,6 +1,7 @@
 import { useSelector, useDispatch } from 'react-redux';
-import { deleteContacts } from 'redux/operations';
-import { getContacts, getFilter } from 'redux/selectors';
+import { deleteContacts } from 'redux/contacts/operations';
+import { getContacts } from 'redux/contacts/selectors';
+import { getFilter } from 'redux/filter/selectors';
 import { ContactCard } from 'components/ContactCard/ContactCard';
 import { Notification } from 'components/Notification/Notification';
 import { ContactListConteiner } from './ContactList.styled';
@@ -19,12 +20,12 @@ export const ContactList = () => {
       {visibleContactList.length !== 0 ? (
         <ContactListConteiner>
           {visibleContactList.map(item => {
-            const { id, name, phone } = item;
+            const { id, name, number } = item;
             return (
               <ContactCard
                 key={id}
                 name={name}
-                phone={phone}
+                number={number}
                 onDelete={() => dispatch(deleteContacts(id))}
               />
             );

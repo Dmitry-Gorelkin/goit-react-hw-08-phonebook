@@ -34,12 +34,14 @@ export const App = () => {
         {/* <Route path="/registration" element={<Registration />} /> */}
         <Route
           path="/registration"
-          element={<RestrictedRoute element={Registration} redirectTo="/" />}
+          element={
+            <RestrictedRoute element={Registration} redirectTo="/contacts" />
+          }
         />
         {/* <Route path="/login" element={<Login />} /> */}
         <Route
           path="/login"
-          element={<RestrictedRoute element={Login} redirectTo="/" />}
+          element={<RestrictedRoute element={Login} redirectTo="/contacts" />}
         />
       </Route>
     </Routes>
