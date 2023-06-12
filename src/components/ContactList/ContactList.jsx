@@ -3,7 +3,7 @@ import { deleteContacts } from 'redux/contacts/operations';
 import { getContacts } from 'redux/contacts/selectors';
 import { getFilter } from 'redux/filter/selectors';
 import { ContactCard } from 'components/ContactCard/ContactCard';
-import { Notification } from 'components/Notification/Notification';
+import { Notification } from 'components/UI/Notification/Notification';
 import { ContactListConteiner } from './ContactList.styled';
 
 export const ContactList = () => {
@@ -18,19 +18,22 @@ export const ContactList = () => {
   return (
     <>
       {visibleContactList.length !== 0 ? (
-        <ContactListConteiner>
-          {visibleContactList.map(item => {
-            const { id, name, number } = item;
-            return (
-              <ContactCard
-                key={id}
-                name={name}
-                number={number}
-                onDelete={() => dispatch(deleteContacts(id))}
-              />
-            );
-          })}
-        </ContactListConteiner>
+        <>
+          <ContactListConteiner>
+            {visibleContactList.map(item => {
+              const { id, name, number } = item;
+              return (
+                <ContactCard
+                  key={id}
+                  id={id}
+                  name={name}
+                  number={number}
+                  onDelete={() => dispatch(deleteContacts(id))}
+                />
+              );
+            })}
+          </ContactListConteiner>
+        </>
       ) : (
         <Notification message="no contacts" />
       )}

@@ -2,7 +2,7 @@ import { useDispatch } from 'react-redux';
 import { Notify } from 'notiflix';
 import { logIn } from 'redux/auth/operations';
 import { useAuth } from 'hooks';
-import { Spiner } from 'components/Spiner/Spiner';
+import { Spiner } from 'components/UI/Spiner/Spiner';
 
 export const LoginForm = () => {
   const dispatch = useDispatch();
@@ -23,9 +23,11 @@ export const LoginForm = () => {
         email,
         password,
       })
-    );
-
-    e.target.reset();
+    )
+      .unwrap()
+      .catch(e => {
+        Notify.failure(`${e}`);
+      });
   };
 
   return (

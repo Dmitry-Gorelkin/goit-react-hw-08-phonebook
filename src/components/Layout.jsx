@@ -2,7 +2,7 @@ import { Suspense } from 'react';
 import { Outlet } from 'react-router-dom';
 import { Helmet } from 'react-helmet';
 import { AppBar } from './AppBar/AppBar';
-import { Container } from './Container/Container.styled';
+import { Container } from './UI/Container/Container.styled';
 
 export const Layout = () => {
   return (

@@ -1,5 +1,5 @@
 import { Helmet } from 'react-helmet';
-import { Section } from 'components/Section/Section';
+import { Section } from 'components/UI/Section/Section';
 import { RegistrationForm } from 'components/RegistrationForm/RegistrationForm';
 
 export const Registration = () => {

@@ -1,4 +1,5 @@
 import { useDispatch } from 'react-redux';
+import { Link } from 'react-router-dom';
 import { addFilter } from 'redux/filter/slice';
 import { FilterConteiner, Title } from './Filter.styled';
 
@@ -13,6 +14,7 @@ export const Filter = () => {
     <FilterConteiner>
       <Title>Find contacts by name</Title>
       <input type="text" name="filter" onChange={handelFilter} />
+      <Link to="/contacts/add">New Contact</Link>
     </FilterConteiner>
   );
 };

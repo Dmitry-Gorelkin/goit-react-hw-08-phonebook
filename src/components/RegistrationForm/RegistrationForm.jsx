@@ -2,13 +2,13 @@ import { useDispatch } from 'react-redux';
 import { Notify } from 'notiflix';
 import { registation } from 'redux/auth/operations';
 import { useAuth } from 'hooks';
-import { Spiner } from 'components/Spiner/Spiner';
+import { Spiner } from 'components/UI/Spiner/Spiner';
 
 export const RegistrationForm = () => {
   const dispatch = useDispatch();
   const { isLoading } = useAuth();
 
-  const handkSubmit = async e => {
+  const handkSubmit = e => {
     e.preventDefault();
     const name = e.target.elements.name.value;
     const email = e.target.elements.email.value;
@@ -24,15 +24,17 @@ export const RegistrationForm = () => {
       return;
     }
 
-    await dispatch(
+    dispatch(
       registation({
         name,
         email,
         password,
       })
-    );
-
-    e.target.reset();
+    )
+      .unwrap()
+      .catch(e => {
+        Notify.failure(`${e}`);
+      });
   };
 
   return (

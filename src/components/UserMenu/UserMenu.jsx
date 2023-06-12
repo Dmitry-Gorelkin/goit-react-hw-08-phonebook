@@ -1,7 +1,8 @@
 import { useDispatch } from 'react-redux';
+import { Notify } from 'notiflix';
 import { useAuth } from 'hooks';
 import { logOut } from 'redux/auth/operations';
-import { Spiner } from 'components/Spiner/Spiner';
+import { Spiner } from 'components/UI/Spiner/Spiner';
 
 export const UserMenu = () => {
   const dispatch = useDispatch();
@@ -12,7 +13,13 @@ export const UserMenu = () => {
       <p>Welcome, {user.name}</p>
       <button
         type="button"
-        onClick={async () => await dispatch(logOut())}
+        onClick={() =>
+          dispatch(logOut())
+            .unwrap()
+            .catch(e => {
+              Notify.failure(`${e}`);
+            })
+        }
         disabled={isLoading}
       >
         {isLoading && <Spiner />}

@@ -1,13 +1,17 @@
 import { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 import { addContacts } from 'redux/contacts/operations';
-import { getContacts } from 'redux/contacts/selectors';
+import { getContacts, getIsLoading } from 'redux/contacts/selectors';
 import { Notify } from 'notiflix/build/notiflix-notify-aio';
 import { Form, Label, Input, Button } from './ContactForm.styled';
+import { Spiner } from 'components/UI/Spiner/Spiner';
 
 export const ContactForm = () => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const contacts = useSelector(getContacts);
+  const isLoading = useSelector(getIsLoading);
   const [name, setName] = useState('');
   const [number, setNumber] = useState('');
 
@@ -36,9 +40,14 @@ export const ContactForm = () => {
       return;
     }
 
-    dispatch(addContacts({ name, number }));
-    setName('');
-    setNumber('');
+    dispatch(addContacts({ name, number }))
+      .unwrap()
+      .then(() => {
+        navigate('/contacts');
+      })
+      .catch(e => {
+        Notify.failure(`${e}`);
+      });
   };
 
   return (
@@ -70,7 +79,9 @@ export const ContactForm = () => {
           placeholder="000-000-00-00"
         />
       </Label>
-      <Button>Add contact</Button>
+      <Button disabled={isLoading}>
+        {isLoading ? <Spiner /> : 'Add contact'}
+      </Button>
     </Form>
   );
 };
