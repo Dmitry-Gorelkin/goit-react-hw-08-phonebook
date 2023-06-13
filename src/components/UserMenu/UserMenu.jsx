@@ -24,7 +24,7 @@ export const UserMenu = () => {
         disabled={isLoading}
         load={isLoading}
       >
-        Logout
+        Log Out
       </Button>
     </UserMenuBox>
   );

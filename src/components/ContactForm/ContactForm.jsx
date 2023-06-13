@@ -1,11 +1,20 @@
-import { useState } from 'react';
+import { useState, useRef } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 import { addContacts } from 'redux/contacts/operations';
 import { getContacts, getIsLoading } from 'redux/contacts/selectors';
 import { Notify } from 'notiflix/build/notiflix-notify-aio';
-import { Form, Label, Input, Button } from './ContactForm.styled';
-import { Spiner } from 'components/UI/Spiner/Spiner';
+import { Button } from 'components/UI/Button/Button';
+import {
+  FormBox,
+  FormLabel,
+  FormInputBox,
+  FormInput,
+  FormBtnBox,
+  FormIconUser,
+  FormIconPhone,
+} from 'components/UI/Form/Form.style';
+import { GoBack } from 'components/UI/GoBack/GoBack';
 
 export const ContactForm = () => {
   const dispatch = useDispatch();
@@ -14,6 +23,9 @@ export const ContactForm = () => {
   const isLoading = useSelector(getIsLoading);
   const [name, setName] = useState('');
   const [number, setNumber] = useState('');
+
+  const location = useLocation();
+  const backLinkHref = useRef(location.state?.from ?? '/contacts');
 
   const handleInput = e => {
     const { name, value } = e.target;
@@ -51,37 +63,41 @@ export const ContactForm = () => {
   };
 
   return (
-    <Form onSubmit={onFormSubmit}>
-      <Label>
-        Name
-        <Input
-          type="text"
-          name="name"
-          pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
-          title="Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan"
-          required
-          onChange={handleInput}
-          value={name}
-          placeholder="Ivan Ivanov"
-        />
-      </Label>
-
-      <Label>
-        Number
-        <Input
-          type="tel"
-          name="number"
-          pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
-          title="Phone number must be digits and can contain spaces, dashes, parentheses and can start with +"
-          required
-          onChange={handleInput}
-          value={number}
-          placeholder="000-000-00-00"
-        />
-      </Label>
-      <Button disabled={isLoading}>
-        {isLoading ? <Spiner /> : 'Add contact'}
-      </Button>
-    </Form>
+    <>
+      <GoBack to={backLinkHref.current} load={isLoading} />
+      <FormBox onSubmit={onFormSubmit}>
+        <FormLabel>Name</FormLabel>
+        <FormInputBox>
+          <FormInput
+            type="text"
+            name="name"
+            pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
+            title="Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan"
+            required
+            onChange={handleInput}
+            value={name}
+          />
+          <FormIconUser size="20px" />
+        </FormInputBox>
+        <FormLabel>Number</FormLabel>
+        <FormInputBox>
+          <FormInput
+            type="tel"
+            name="number"
+            pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
+            title="Phone number must be digits and can contain spaces, dashes, parentheses and can start with +"
+            required
+            onChange={handleInput}
+            value={number}
+          />
+          <FormIconPhone size="20px" />
+        </FormInputBox>
+        <FormBtnBox>
+          <Button type="submit" disabled={isLoading} load={isLoading}>
+            Add contact
+          </Button>
+        </FormBtnBox>
+      </FormBox>
+    </>
   );
 };

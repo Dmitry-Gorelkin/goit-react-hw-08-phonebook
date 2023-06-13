@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { FiUser, FiMail, FiKey } from 'react-icons/fi';
+import { FiUser, FiMail, FiKey, FiPhone } from 'react-icons/fi';
 
 export const FormBox = styled.form`
   display: flex;
@@ -79,6 +79,18 @@ export const FormIconMail = styled(FiMail)`
 `;
 
 export const FormIconPassword = styled(FiKey)`
+  position: absolute;
+
+  left: 6px;
+  top: 6px;
+
+  color: ${p => p.theme.colors.gray};
+
+  input:focus + & {
+    color: ${p => p.theme.colors.accent};
+  }
+`;
+export const FormIconPhone = styled(FiPhone)`
   position: absolute;
 
   left: 6px;

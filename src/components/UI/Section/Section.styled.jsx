@@ -3,9 +3,12 @@ import styled from 'styled-components';
 export const SectionConteiner = styled.div`
   padding-top: ${p => p.theme.space[5]}px;
   padding-bottom: ${p => p.theme.space[5]}px;
+
+  position: relative;
 `;
 
 export const Title = styled.h2`
+  margin-bottom: ${p => p.theme.space[3]}px;
   padding-top: ${p => p.theme.space[3]}px;
   padding-bottom: ${p => p.theme.space[3]}px;
 
