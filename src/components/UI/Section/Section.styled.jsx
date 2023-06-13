@@ -11,9 +11,15 @@ export const Title = styled.h2`
 
   text-align: center;
   text-transform: capitalize;
+
+  font-size: ${p => p.theme.fontSize[6]}px;
 `;
 
 export const Context = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
   padding-top: ${p => p.theme.space[3]}px;
   padding-bottom: ${p => p.theme.space[3]}px;
 `;

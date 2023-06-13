@@ -8,6 +8,7 @@ import {
   FormLabel,
   FormInputBox,
   FormInput,
+  FormBtnBox,
   FormIconUser,
   FormIconMail,
   FormIconPassword,
@@ -48,25 +49,27 @@ export const RegistrationForm = () => {
 
   return (
     <FormBox autoComplete="off" onSubmit={handkSubmit}>
-      <FormLabel for="username">Username</FormLabel>
+      <FormLabel htmlFor="username">Username</FormLabel>
       <FormInputBox>
         <FormInput type="text" name="name" id="username" />
         <FormIconUser size="20px" />
       </FormInputBox>
 
-      <FormLabel for="useremail">Email</FormLabel>
+      <FormLabel htmlFor="useremail">Email</FormLabel>
       <FormInputBox>
         <FormInput type="email" name="email" id="useremail" />
         <FormIconMail size="20px" />
       </FormInputBox>
-      <FormLabel for="userpassword">Password</FormLabel>
+      <FormLabel htmlFor="userpassword">Password</FormLabel>
       <FormInputBox>
         <FormInput type="password" name="password" id="userpassword" />
         <FormIconPassword size="20px" />
       </FormInputBox>
-      <Button type="submit" disabled={isLoading} load={isLoading}>
-        Registration
-      </Button>
+      <FormBtnBox>
+        <Button type="submit" disabled={isLoading} load={isLoading}>
+          Registration
+        </Button>
+      </FormBtnBox>
     </FormBox>
   );
 };

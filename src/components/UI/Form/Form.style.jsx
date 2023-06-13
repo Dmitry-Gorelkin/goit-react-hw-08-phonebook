@@ -45,6 +45,13 @@ export const FormInput = styled.input`
   }
 `;
 
+export const FormBtnBox = styled.div`
+  display: flex;
+  justify-content: center;
+
+  padding-top: ${p => p.theme.space[4]}px;
+`;
+
 export const FormIconUser = styled(FiUser)`
   position: absolute;
 

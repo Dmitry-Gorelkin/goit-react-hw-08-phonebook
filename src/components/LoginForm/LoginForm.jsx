@@ -8,6 +8,7 @@ import {
   FormLabel,
   FormInputBox,
   FormInput,
+  FormBtnBox,
   FormIconMail,
   FormIconPassword,
 } from 'components/UI/Form/Form.style';
@@ -40,21 +41,22 @@ export const LoginForm = () => {
 
   return (
     <FormBox autoComplete="off" onSubmit={handkSubmit}>
-      <FormLabel for="useremail">Email</FormLabel>
+      <FormLabel htmlFor="useremail">Email</FormLabel>
       <FormInputBox>
         <FormInput type="email" name="email" id="useremail" />
         <FormIconMail size="20px" />
       </FormInputBox>
 
-      <FormLabel for="userpassword">Password</FormLabel>
+      <FormLabel htmlFor="userpassword">Password</FormLabel>
       <FormInputBox>
         <FormInput type="password" name="password" id="userpassword" />
         <FormIconPassword size="20px" />
       </FormInputBox>
-
-      <Button type="submit" disabled={isLoading} load={isLoading}>
-        Log In
-      </Button>
+      <FormBtnBox>
+        <Button type="submit" disabled={isLoading} load={isLoading}>
+          Log In
+        </Button>
+      </FormBtnBox>
     </FormBox>
   );
 };
