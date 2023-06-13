@@ -7,5 +7,8 @@ export const theme = Object.freeze({
     dark: '#212121',
   },
 
-  space: [0, 2, 4, 8, 16, 32, 64, 128, 256],
+  space: [0, 2, 4, 8, 16, 32, 64, 128, 256, 512, 1024],
+  fontSize: [8, 10, 14, 16, 20],
+
+  shadow: '1px 1px 10px 3px rgba(0, 0, 0, 0.2)',
 });

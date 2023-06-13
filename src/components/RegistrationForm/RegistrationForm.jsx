@@ -2,7 +2,12 @@ import { useDispatch } from 'react-redux';
 import { Notify } from 'notiflix';
 import { registation } from 'redux/auth/operations';
 import { useAuth } from 'hooks';
-import { Spiner } from 'components/UI/Spiner/Spiner';
+import {
+  RegistrationFormBox,
+  RegistrationFormInput,
+  RegistrationFormLabel,
+} from './RegistrationForm.styled';
+import { Button } from 'components/UI/Button/Button';
 
 export const RegistrationForm = () => {
   const dispatch = useDispatch();
@@ -38,23 +43,23 @@ export const RegistrationForm = () => {
   };
 
   return (
-    <form autoComplete="off" onSubmit={handkSubmit}>
-      <label>
-        Username
-        <input type="text" name="name" />
-      </label>
-      <label>
-        Email
-        <input type="email" name="email" />
-      </label>
-      <label>
-        Password
-        <input type="password" name="password" />
-      </label>
-      <button type="submit" disabled={isLoading}>
-        {isLoading && <Spiner />}
+    <RegistrationFormBox autoComplete="off" onSubmit={handkSubmit}>
+      <RegistrationFormLabel for="username">Username </RegistrationFormLabel>
+      <RegistrationFormInput type="text" name="name" id="username" />
+
+      <RegistrationFormLabel for="useremail">Email </RegistrationFormLabel>
+      <RegistrationFormInput type="email" name="email" id="useremail" />
+
+      <RegistrationFormLabel for="userpassword">Password</RegistrationFormLabel>
+      <RegistrationFormInput
+        type="password"
+        name="password"
+        id="userpassword"
+      />
+
+      <Button type="submit" disabled={isLoading} load={isLoading}>
         Registration
-      </button>
-    </form>
+      </Button>
+    </RegistrationFormBox>
   );
 };

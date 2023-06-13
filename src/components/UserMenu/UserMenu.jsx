@@ -2,16 +2,17 @@ import { useDispatch } from 'react-redux';
 import { Notify } from 'notiflix';
 import { useAuth } from 'hooks';
 import { logOut } from 'redux/auth/operations';
-import { Spiner } from 'components/UI/Spiner/Spiner';
+import { Button } from 'components/UI/Button/Button';
+import { UserMenuBox, UserMenuText } from './UserMenu.styled';
 
 export const UserMenu = () => {
   const dispatch = useDispatch();
   const { user, isLoading } = useAuth();
 
   return (
-    <div>
-      <p>Welcome, {user.name}</p>
-      <button
+    <UserMenuBox>
+      <UserMenuText>Welcome, {user.name}</UserMenuText>
+      <Button
         type="button"
         onClick={() =>
           dispatch(logOut())
@@ -21,10 +22,10 @@ export const UserMenu = () => {
             })
         }
         disabled={isLoading}
+        load={isLoading}
       >
-        {isLoading && <Spiner />}
         Logout
-      </button>
-    </div>
+      </Button>
+    </UserMenuBox>
   );
 };
