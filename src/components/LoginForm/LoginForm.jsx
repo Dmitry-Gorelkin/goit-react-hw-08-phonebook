@@ -2,7 +2,15 @@ import { useDispatch } from 'react-redux';
 import { Notify } from 'notiflix';
 import { logIn } from 'redux/auth/operations';
 import { useAuth } from 'hooks';
-import { Spiner } from 'components/UI/Spiner/Spiner';
+import { Button } from 'components/UI/Button/Button';
+import {
+  FormBox,
+  FormLabel,
+  FormInputBox,
+  FormInput,
+  FormIconMail,
+  FormIconPassword,
+} from 'components/UI/Form/Form.style';
 
 export const LoginForm = () => {
   const dispatch = useDispatch();
@@ -31,18 +39,22 @@ export const LoginForm = () => {
   };
 
   return (
-    <form autoComplete="off" onSubmit={handkSubmit}>
-      <label>
-        Email
-        <input type="email" name="email" />
-      </label>
-      <label>
-        Password
-        <input type="password" name="password" />
-      </label>
-      <button type="submit" disabled={isLoading}>
-        {isLoading && <Spiner />} Log In
-      </button>
-    </form>
+    <FormBox autoComplete="off" onSubmit={handkSubmit}>
+      <FormLabel for="useremail">Email</FormLabel>
+      <FormInputBox>
+        <FormInput type="email" name="email" id="useremail" />
+        <FormIconMail size="20px" />
+      </FormInputBox>
+
+      <FormLabel for="userpassword">Password</FormLabel>
+      <FormInputBox>
+        <FormInput type="password" name="password" id="userpassword" />
+        <FormIconPassword size="20px" />
+      </FormInputBox>
+
+      <Button type="submit" disabled={isLoading} load={isLoading}>
+        Log In
+      </Button>
+    </FormBox>
   );
 };

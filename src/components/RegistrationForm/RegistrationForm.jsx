@@ -2,12 +2,16 @@ import { useDispatch } from 'react-redux';
 import { Notify } from 'notiflix';
 import { registation } from 'redux/auth/operations';
 import { useAuth } from 'hooks';
-import {
-  RegistrationFormBox,
-  RegistrationFormInput,
-  RegistrationFormLabel,
-} from './RegistrationForm.styled';
 import { Button } from 'components/UI/Button/Button';
+import {
+  FormBox,
+  FormLabel,
+  FormInputBox,
+  FormInput,
+  FormIconUser,
+  FormIconMail,
+  FormIconPassword,
+} from 'components/UI/Form/Form.style';
 
 export const RegistrationForm = () => {
   const dispatch = useDispatch();
@@ -43,23 +47,26 @@ export const RegistrationForm = () => {
   };
 
   return (
-    <RegistrationFormBox autoComplete="off" onSubmit={handkSubmit}>
-      <RegistrationFormLabel for="username">Username </RegistrationFormLabel>
-      <RegistrationFormInput type="text" name="name" id="username" />
+    <FormBox autoComplete="off" onSubmit={handkSubmit}>
+      <FormLabel for="username">Username</FormLabel>
+      <FormInputBox>
+        <FormInput type="text" name="name" id="username" />
+        <FormIconUser size="20px" />
+      </FormInputBox>
 
-      <RegistrationFormLabel for="useremail">Email </RegistrationFormLabel>
-      <RegistrationFormInput type="email" name="email" id="useremail" />
-
-      <RegistrationFormLabel for="userpassword">Password</RegistrationFormLabel>
-      <RegistrationFormInput
-        type="password"
-        name="password"
-        id="userpassword"
-      />
-
+      <FormLabel for="useremail">Email</FormLabel>
+      <FormInputBox>
+        <FormInput type="email" name="email" id="useremail" />
+        <FormIconMail size="20px" />
+      </FormInputBox>
+      <FormLabel for="userpassword">Password</FormLabel>
+      <FormInputBox>
+        <FormInput type="password" name="password" id="userpassword" />
+        <FormIconPassword size="20px" />
+      </FormInputBox>
       <Button type="submit" disabled={isLoading} load={isLoading}>
         Registration
       </Button>
-    </RegistrationFormBox>
+    </FormBox>
   );
 };
