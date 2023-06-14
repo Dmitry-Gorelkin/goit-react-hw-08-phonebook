@@ -5,5 +5,5 @@ import { Section } from 'components/UI/Section/Section';
 // };
 
 export const Home = () => {
-  return <Section title="Добро пожаловать домой"></Section>;
+  return <Section title="welcome home"></Section>;
 };
