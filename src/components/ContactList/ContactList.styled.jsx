@@ -1,6 +1,8 @@
 import styled from 'styled-components';
 
 export const ContactListConteiner = styled.ul`
+  width: ${p => p.theme.space[9]}px;
+
   display: flex;
   flex-direction: column;
 

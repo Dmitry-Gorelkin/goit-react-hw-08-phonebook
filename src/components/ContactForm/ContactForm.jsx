@@ -14,7 +14,7 @@ import {
   FormIconUser,
   FormIconPhone,
 } from 'components/UI/Form/Form.style';
-import { GoBack } from 'components/UI/GoBack/GoBack';
+import { ButtonGoBack } from 'components/UI/ButtonGoBack/ButtonGoBack';
 
 export const ContactForm = () => {
   const dispatch = useDispatch();
@@ -64,7 +64,10 @@ export const ContactForm = () => {
 
   return (
     <>
-      <GoBack to={backLinkHref.current} load={isLoading} />
+      <ButtonGoBack
+        to={backLinkHref.current}
+        load={isLoading ? isLoading.toString() : undefined}
+      />
       <FormBox onSubmit={onFormSubmit}>
         <FormLabel>Name</FormLabel>
         <FormInputBox>

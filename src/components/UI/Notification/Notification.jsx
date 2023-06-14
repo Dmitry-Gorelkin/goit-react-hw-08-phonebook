@@ -1,7 +1,8 @@
 import PropTypes from 'prop-types';
+import { NotificationBox } from './Notification.styled';
 
 export const Notification = ({ message }) => {
-  return <p style={{ textTransform: 'uppercase' }}>{message}</p>;
+  return <NotificationBox>{message}</NotificationBox>;
 };
 
 Notification.propTypes = {

@@ -1,11 +1,10 @@
 import PropTypes from 'prop-types';
-import { ContactListItem } from './ContactCard.styled';
-
+import { useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { getIsLoading } from 'redux/contacts/selectors';
-import { useState } from 'react';
-import { useEffect } from 'react';
-import { Button } from 'components/UI/Button/Button';
+import { ContactListItem, ContactListText } from './ContactCard.styled';
+import { ButtonIcon } from 'components/UI/ButtonIcon/ButtonIcon';
+import { FiTrash2 } from 'react-icons/fi';
 
 export const ContactCard = ({ name, number, onDelete, id }) => {
   const isLoading = useSelector(getIsLoading);
@@ -25,16 +24,19 @@ export const ContactCard = ({ name, number, onDelete, id }) => {
 
   return (
     <ContactListItem>
-      {name}: {number}
-      <Button
+      <ContactListText>
+        {name}: {number}
+      </ContactListText>
+
+      <ButtonIcon
         type="button"
         onClick={spinerDelContakt}
         id={id}
         disabled={isLoading}
         load={load}
       >
-        Delete
-      </Button>
+        <FiTrash2 size="20px" />
+      </ButtonIcon>
     </ContactListItem>
   );
 };

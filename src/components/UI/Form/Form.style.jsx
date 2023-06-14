@@ -90,6 +90,7 @@ export const FormIconPassword = styled(FiKey)`
     color: ${p => p.theme.colors.accent};
   }
 `;
+
 export const FormIconPhone = styled(FiPhone)`
   position: absolute;
 
