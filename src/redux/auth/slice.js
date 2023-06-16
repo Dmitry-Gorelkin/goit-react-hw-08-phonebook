@@ -68,9 +68,3 @@ const authSlice = createSlice({
 });
 
 export const authReducer = authSlice.reducer;
-
-/* 
-  test456
-  test456@mail.com
-  test456
-*/

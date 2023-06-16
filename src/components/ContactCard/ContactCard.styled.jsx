@@ -3,12 +3,13 @@ import styled from 'styled-components';
 export const ContactListItem = styled.li`
   display: flex;
   justify-content: space-between;
-  align-items: baseline;
+  align-items: center;
 
-  padding-top: ${p => p.theme.space[2]}px;
-  padding-bottom: ${p => p.theme.space[2]}px;
+  padding: ${p => p.theme.space[3]}px;
+  margin-bottom: ${p => p.theme.space[4]}px;
 
-  /* font-size: ${p => p.theme.fontSize[3]}px; */
+  border-radius: ${p => p.theme.space[4]}px;
+  box-shadow: ${p => p.theme.shadow};
 `;
 
 export const ContactListText = styled.span`
