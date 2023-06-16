@@ -1,8 +1,8 @@
 import { useEffect } from 'react';
 import { Routes, Route } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
-import { Notify } from 'notiflix';
 import { useAuth } from 'hooks';
+import { attention } from 'utils/attention/attintion';
 import { Layout } from './Layout';
 import { Home } from 'pages/Home';
 import { Contacts } from 'pages/Contacts';
@@ -22,7 +22,7 @@ export const App = () => {
     dispatch(refreshUser())
       .unwrap()
       .catch(e => {
-        Notify.failure(`${e}`);
+        attention.error(e);
       });
   }, [dispatch]);
 

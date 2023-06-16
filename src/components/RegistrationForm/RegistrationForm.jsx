@@ -1,7 +1,7 @@
 import { useDispatch } from 'react-redux';
-import { Notify } from 'notiflix';
 import { registation } from 'redux/auth/operations';
 import { useAuth } from 'hooks';
+import { attention } from 'utils/attention/attintion';
 import { Button } from 'components/UI/Button/Button';
 import {
   FormBox,
@@ -25,12 +25,12 @@ export const RegistrationForm = () => {
     const password = e.target.elements.password.value;
 
     if (name === '' || email === '' || password === '') {
-      Notify.warning('Enter data for registration.');
+      attention.warning('Enter data for registration.');
       return;
     }
 
     if (password.length < 7) {
-      Notify.warning('Password must be 7 characters or more.');
+      attention.warning('Password must be 7 characters or more.');
       return;
     }
 
@@ -43,7 +43,7 @@ export const RegistrationForm = () => {
     )
       .unwrap()
       .catch(e => {
-        Notify.failure(`${e}`);
+        attention.error(`${e}`);
       });
   };
 

@@ -1,7 +1,7 @@
 import { useDispatch } from 'react-redux';
-import { Notify } from 'notiflix';
 import { logIn } from 'redux/auth/operations';
 import { useAuth } from 'hooks';
+import { attention } from 'utils/attention/attintion';
 import { Button } from 'components/UI/Button/Button';
 import {
   FormBox,
@@ -23,7 +23,7 @@ export const LoginForm = () => {
     const password = e.target.elements.password.value;
 
     if (email === '' || password === '') {
-      Notify.warning('Enter data for authorization.');
+      attention.warning('Enter data for authorization.');
       return;
     }
 
@@ -35,7 +35,7 @@ export const LoginForm = () => {
     )
       .unwrap()
       .catch(e => {
-        Notify.failure(`${e}`);
+        attention.error(`${e}`);
       });
   };
 

@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { addContacts } from 'redux/contacts/operations';
 import { getContacts, getIsLoading } from 'redux/contacts/selectors';
-import { Notify } from 'notiflix/build/notiflix-notify-aio';
+import { attention } from 'utils/attention/attintion';
 import { Button } from 'components/UI/Button/Button';
 import {
   FormBox,
@@ -47,7 +47,7 @@ export const ContactForm = () => {
     e.preventDefault();
 
     if (contacts.find(item => item.name.toLowerCase() === name.toLowerCase())) {
-      Notify.warning(`${name} is already in contacts.`);
+      attention.warning(`${name} is already in contacts.`);
       setName('');
       return;
     }
@@ -58,7 +58,7 @@ export const ContactForm = () => {
         navigate('/contacts');
       })
       .catch(e => {
-        Notify.failure(`${e}`);
+        attention.error(`${e}`);
       });
   };
 

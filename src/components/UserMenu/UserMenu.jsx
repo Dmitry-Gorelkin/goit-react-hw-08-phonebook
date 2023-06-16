@@ -1,6 +1,6 @@
 import { useDispatch } from 'react-redux';
-import { Notify } from 'notiflix';
 import { useAuth } from 'hooks';
+import { attention } from 'utils/attention/attintion';
 import { logOut } from 'redux/auth/operations';
 import { Button } from 'components/UI/Button/Button';
 import { UserMenuBox, UserMenuText } from './UserMenu.styled';
@@ -18,7 +18,7 @@ export const UserMenu = () => {
           dispatch(logOut())
             .unwrap()
             .catch(e => {
-              Notify.failure(`${e}`);
+              attention.error(`${e}`);
             })
         }
         disabled={isLoading}
